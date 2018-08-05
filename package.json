@@ -1,0 +1,19 @@
+{
+  "name": "blog",
+  "version": "",
+  "scripts": {
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs"
+  },
+  "dependencies": {
+    "docsearch.js": "^2.5.2",
+    "vuepress": "^0.12.0"
+  },
+  "devDependencies": {
+    "file-loader": "^1.1.11",
+    "json-stringify-safe": "^5.0.1",
+    "less": "^3.0.4",
+    "less-loader": "^4.1.0",
+    "url-loader": "^1.0.1"
+  }
+}
