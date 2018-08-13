@@ -178,6 +178,45 @@ person.constructor -> Person
 有两种方式来确定原型和实例之间的关系。
 * 使用instanceof操作符
 ```js
-
+console.log(person instanceof Object);       //true
+console.log(person instanceof Person);       //true
 ```
+
+* 使用isPrototypeOf()方法
+```js
+console.log(Object.prototype.isPrototypeOf(person));       //true
+console.log(Person.prototype.isPrototypeOf(person));       //true
+```
+__原型链的缺点__
+和通过原型模式创建对象一样，原型链也存在引用类型被所有实例共享的问题，同时，没有办法在不影响所有对象实例的情况下，向超类型的构造函数中传递参数。因此在实践中很少会单独使用原型链。
+
+
+#### 借用构造函数
+这种技术的实现思路是在子类型构造函数的内部调用超类型构造函数。如下所示：
+```js
+function SuperType(){
+  this.colors = ['red', 'blue', 'green'];
+}
+function SubType(){
+  SuperType.call(this);
+}
+let instance1 = new SuperType();
+instance1.colors.push('black');
+console.log(instance1.colors);         // 'red, blue, green, black'
+
+let instance2 = new SubType();
+console.log(instance2.colors);         // 'red, blue, green'
+```
+优点：
+> 可以在子类型构造函数中向超类型构造函数传递参数
+
+缺点：
+> 方法都在构造函数中定义，出现重复定义，而且超类型的原型中定义的方法，对子类型来说是不可见的，因此借用构造函数也是很少单独使用的
+
+#### 组合继承
+这种方式是将原型链和借用构造函数的技术组合到一起，各发挥其所长的一种继承模式
+
+
+
+
 

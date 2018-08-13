@@ -26,8 +26,8 @@
                     </div>
                </scroll> 
             </div>
-            <div class="container">
-                <scroll :wheel-size="40" :resize="resize" :size="0.6">
+            <div class="container" style="overflow: auto;">
+                <!-- <scroll :wheel-size="40" :resize="resize" :size="0.6"> -->
                     <div class="pages-list" v-if="$page.frontmatter.home">
                         <div class="lg-screen">
                             <div class="col">
@@ -142,7 +142,7 @@
                     <div class="page-content" v-if="!$page.frontmatter.home">
                         <Content/>
                     </div>
-                </scroll>
+                <!-- </scroll> -->
             </div>
             <!-- <div class="directory"></div> -->
         </div>
@@ -192,7 +192,7 @@ export default {
     computed: {
         pages: function(){
             return this.$site.pages.filter(item => {
-                return item.path.indexOf(this.nav) > -1;
+                return item.path.indexOf(this.nav) > -1 && !item.frontmatter.home;
             }).sort(function(value1,value2){
                 return value1 - value2;
             })
