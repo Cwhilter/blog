@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import {EventUtil,debounce} from '../assets/util'
+import {EventUtil,debounce} from '../../assets/util'
 
 export default {
     props: {

@@ -12,7 +12,6 @@ tag:
   - "PHP"
 ---
 ## this is the default page
-<date/>  
 
 > hello
 ---
