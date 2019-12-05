@@ -7,16 +7,26 @@
   top: 0;
 }
 h1, h2, h3, h4, h5, h6 {
-  line-height: 2.25;
+  line-height: 2;
+  margin: 1rem 0;
 }
-ol, p, ul {
-  line-height: 2.7;
+h1 {
+  font-size: 1.5rem;
 }
-h4 {
+h2 {
+  font-size: 1.3rem;
+}
+h3 {
   font-size: 1.1rem;
 }
-h5 {
+h4 {
   font-size: 0.9rem;
+}
+h5 {
+  font-size: 0.8rem;
+}
+ol, p, ul {
+  line-height: 2.5;
 }
 #main-layout {
   min-height: 100%;
@@ -53,10 +63,16 @@ h5 {
 #content {
   background-color: #f4f4f4;
 
+  .home-side {
+    background-color: #001529;
+    color           : rgba(255,255,255,0.65);
+  }
+  .content-side {
+    background-color: rgba(255, 255, 255, 0.7);
+    color: #595959;
+  }
   .sidebar {
-    background-color: #282c34;
-    background      : #2a2a2a;
-    color           : hsla(0, 0%, 100%, .7);
+    // background      : #2a2a2a;
     width           : 18rem;
 
     .personal-info {
@@ -73,7 +89,7 @@ h5 {
       border-radius      : 50%;
       background-position: center;
       background-size    : 8rem 8rem;
-      background-image   : url(../images/profile_head.png);
+      background-image   : url(/images/profile_head.png);
     }
 
     .personal-name {
@@ -86,7 +102,6 @@ h5 {
 
 
     }
-
     .nav-first-title {
       text-align: center;
 
@@ -98,12 +113,17 @@ h5 {
         text-align      : center;
         width           : 60%;
         margin          : 0.5rem auto;
-        background-color: #4a4a4a;
+        background-color: rgba(255, 255, 255, 0.2);
         cursor          : pointer;
 
         &:hover {
           color: #fafafa;
         }
+      }
+
+      .active {
+        background-color: #1890ff;
+        color: #fff;
       }
 
       ul {
@@ -114,7 +134,7 @@ h5 {
 
     .quotes {
       text-align: center;
-      margin-top: 5rem;
+      margin: 10rem 0 1rem;
       width     : 100%;
 
       .contact {
@@ -137,6 +157,45 @@ h5 {
       }
 
     }
+    
+    .headers-list {
+      position: relative;
+      top: 3.5rem;
+      list-style: none;
+      li {
+        cursor: pointer;
+        font-weight: 500;
+        font-size: 14px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        &:hover {
+          color: #3eaf7c;
+        }
+      }
+    }
+    .return-home {
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+      height: 3rem;
+      line-height: 3rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      .blog-img {
+        margin-right: 20px;
+        border: 1px solid #ccc;
+        width              : 2.5rem;
+        height             : 2.5rem;
+        line-height: 2.5rem;
+        border-radius      : 50%;
+        background-position: center;
+        background-size    : 2.2rem 2.2rem;
+        background-image   : url(/images/profile_head.png);
+        background-repeat: no-repeat;
+      }
+    }
   }
 
   .container {
@@ -144,12 +203,16 @@ h5 {
     left      : 18rem;
     right     : 0;
     height    : 100%;
-    background: url(../images/background_repeat.png);
+    background: url(/images/background_repeat.png);
   }
   .page-content {
-    padding: 1.5rem 5rem;
+    padding: 1.5rem 8rem;
     background-color: hsla(0, 0%, 100%, .7);
     border-radius: 8px;
+    .content__default > p {
+      margin: 1rem 0;
+      line-height: 2;
+    }
   }
   .page-content,
   .pages-list {
@@ -191,7 +254,8 @@ h5 {
         .title {
           height     : 50px;
           line-height: 50px;
-          font-size  : 16px;
+          font-size  : 18px;
+          font-weight: 550;
         }
 
         .summary {
@@ -200,9 +264,11 @@ h5 {
           height     : calc(~'100% - 50px');
 
           p {
-            text-indent: 1.5rem;
+            text-indent: 2em;
           }
-
+          img {
+            max-height: 500px;
+          }
           img.right {
             float    : right;
             max-width: 200px;
@@ -215,6 +281,9 @@ h5 {
 
           img.top {
             max-width: 100%;
+            max-height: 300px;
+            margin: 0 auto;
+            display: block;
           }
         }
       }
@@ -233,7 +302,7 @@ h5 {
         }
 
         .tag-icon {
-          margin-left   : 20px;
+          // margin-left   : 20px;
           margin-right  : 8px;
           vertical-align: middle;
         }
@@ -266,13 +335,15 @@ h5 {
 
   @media screen and (max-width: 1600px) and (min-width: 1288px) {
     .personal-info {
-      height: 18rem !important;
+      height: 16rem !important;
     }
 
     .content {
       padding: 1.5rem 5rem;
     }
-
+    .page-content {
+      padding: 1.2rem 5rem;
+    }
     .sidebar {
       width: 15rem;
     }
@@ -307,7 +378,11 @@ h5 {
 
   @media screen and (max-width: 1288px) and (min-width: 520px) {
     .personal-info {
-      height: 18rem !important;
+      height: 16rem !important;
+    }
+
+    .page-content {
+      padding: 1rem 2rem;
     }
 
     .content {

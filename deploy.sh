@@ -15,7 +15,8 @@ cd docs/.vuepress/dist
 git init
 git add -A
 git commit -m 'deploy'
-git push -f git@github.com:Cwhilter.github.io.git master
+git remote add origin https://github.com/Cwhilter/whilter.github.io.git
+git push -u origin master
 # 如果你想要部署到 https://<USERNAME>.github.io
 # git push -f git@github.com:<USERNAME>/<USERNAME>.github.io.git master
 

@@ -2,7 +2,7 @@
   <div id="main-layout">
     <div id="content">
       <!-- 左侧导航 -->
-      <div class="sidebar">
+      <div class="sidebar home-side" v-if="isHomePage">
         <div class="personal-info">
           <div class="profile-head"></div>
           <div class="personal-name">whilter</div>
@@ -13,7 +13,7 @@
             v-for="item in $site.themeConfig.sidebar"
             @click="navLink(item.link)"
           >
-            <span>{{item.title}}</span>
+            <span :class="{'active': nav === item.link}">{{item.title}}</span>
           </div>
         </div>
         <div class="quotes">
@@ -35,10 +35,23 @@
           </div>
         </div>
       </div>
+      <div v-else class="sidebar content-side">
+        <div class="return-home" @click="() => this.$router.push('/')"><span class="blog-img"></span>whilter的个人博客</div>
+        <ul class="headers-list">
+          <h3>{{$page.title}}</h3>
+          <li
+            v-for="(item, index) in headers"
+            :title="item.title"
+            :key="index"
+            :style="{'padding-left': (item.level - 2) * 1.2 + 'rem'}"
+            @click="handleGoHeader(item)">
+            {{item.title}}
+          </li>
+        </ul>
+      </div>
       <div class="container" style="overflow: auto">
         <!-- 首页列表 -->
-        <!-- <scroll :wheel-size="40" :resize="resize" :size="0.6"> -->
-        <div class="pages-list" v-if="$page.frontmatter.home">
+        <div class="pages-list" v-if="isHomePage">
           <div class="lg-screen">
             <div class="col">
               <articleSummaryChunk v-for="(item,index) in filterPages(3, 0)" :key="index" :articleInfo="item"/>
@@ -60,20 +73,18 @@
           </div>
         </div>
         <!-- 文章内容 -->
-        <div class="page-content" v-if="!$page.frontmatter.home">
+        <div class="page-content" v-else>
           <Content />
         </div>
-        <!-- </scroll> -->
       </div>
-      <!-- <div class="directory"></div> -->
     </div>
   </div>
 </template>
 
 <script>
-import { EventUtil } from "../../assets/util"
-import scroll from "../components/scroll.vue"
+import { EventUtil, debounce } from "../../assets/util"
 import '../styles/theme.less'
+import '../styles/iconfont.css'
 import articleSummaryChunk from '../components/articleSummaryChunk'
 export default {
   data() {
@@ -83,49 +94,53 @@ export default {
     }
   },
   watch: {
-    $route(to, from) {
-      this.scrollResize()
-    }
+    
   },
   methods: {
-    scrollResize() {
-      this.resize = !this.resize
+    onScroll: debounce(function() {
+      this.activeSidebar()
+    }, 500),
+    activeSidebar() {
+      const sidebarLinks = [].slice.call(document.querySelectorAll('.headers-list li'))
     },
     navLink(link) {
       this.nav = link
-      this.scrollResize()
       this.$router.push({ path: "/" })
-      this.$nextTick(function() {
-        this.scrollResize()
-      })
     },
     filterPages(cols, col_index) {
       return this.pages.filter((item, index) => {
         return index % cols == col_index
       })
+    },
+    handleGoHeader(item) {
+      // this.$router.push({ path: this.$route.path + '#' + item.title })
+      document.getElementById(item.slug).scrollIntoView()
     }
   },
   mounted() {
-    this.scrollResize()
-    EventUtil.add(window, "resize", this.scrollResize)
+    window.addEventListener('scroll', this.onScroll)
   },
   computed: {
-    pages: function() {
+    pages() {
       return this.$site.pages
         .filter(item => {
           return item.path.indexOf(this.nav) > -1 && !item.frontmatter.home
         })
-        .sort(function(value1, value2) {
-          return value1 - value2
-        })
+        // .sort(function(value1, value2) {
+        //   return value1 - value2
+        // })
+    },
+    isHomePage() {
+      return this.$page.frontmatter.home
+    },
+    headers() {
+      return this.$page.headers
     }
   },
   updated() {
-    console.log("update")
   },
   components: {
-    scroll,
-    articleSummaryChunk
+    articleSummaryChunk,
   }
 }
 </script>

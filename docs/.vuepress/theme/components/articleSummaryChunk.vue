@@ -9,7 +9,7 @@
         <div class="summary">
           <img
             v-if="articleInfo.frontmatter.illustration"
-            :src="'/images/' + articleInfo.frontmatter.illustration.link"
+            :src="'../images/' + articleInfo.frontmatter.illustration.link"
             alt
             align="top"
             :class="[articleInfo.frontmatter.illustration.position || 'right']"

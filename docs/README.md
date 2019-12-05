@@ -11,32 +11,7 @@ tag:
   - "JavaScript"
   - "PHP"
 ---
-## this is the default page
 
-> hello
----
-1. one
-1. two
-1. three
-***
+[markdown语法](https://www.jianshu.com/p/191d1e21f7ed)
 
-[hello world](http://baidu.com)
-
-**粗体**
-_强调_
-``` js
-
-console.log('hello world');
-
-```
-::: tip
-This is a tip
-:::
-
-::: warning
-This is a warning
-:::
-
-::: danger
-This is a dangerous warning
-:::
+[VuePress](https://vuepress.vuejs.org/zh/)

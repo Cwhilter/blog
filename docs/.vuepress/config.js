@@ -2,28 +2,21 @@ module.exports = {
 	title: 'whilter的个人博客',
 	description: 'my personal blog',
 	head: [
-		
+		['link', { rel: 'stylesheet', href: `/css/iconfont.css` }]
 	],
 	themeConfig: {
 		sidebar: [
 			{
-				title: '首页',
+				title: '全部',
 				link: '/'
 			},
 			{
 				title: '前端',
-				collapsable: false,
 				link: '/fontend/'
 			},
 			{
 				title: 'Linux',
-				collapsable: false,
 				link: '/linux/'
-			},
-			{
-				title: 'PHP',
-				collapsable: false,
-				link: '/php/'
 			},
 			{
 				title: '杂记',
@@ -31,18 +24,8 @@ module.exports = {
 			}
 		]
 	},
-	// plugins: [
-	// 	[
-  //     'vuepress-plugin-container',
-  //     {
-  //       type: 'tip',
-  //       defaultTitle: {
-  //         '/': 'TIP',
-  //         '/zh/': '提示',
-  //       },
-  //     },
-  //   ],
-	// ],
+	plugins: [
+	],
 	configureWebpack: {
 		resolve: {
 		  alias: {

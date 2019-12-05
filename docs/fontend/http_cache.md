@@ -10,47 +10,49 @@ tag:
   - "http"
   - "cache"
 ---
-## HTTP协议之缓存篇
----
-### 缓存的好处
+# HTTP协议之缓存篇
+
+## 缓存的好处
 1. 减少冗余数据传输和带宽占用
 2. 减轻服务端压力
 3. 减少延迟和网络堵塞，从而缩短资源加载时间
 4. 加快客户端响应速度
 
-### 本地缓存
+## 本地缓存
 
-#### 与本地缓存有关头
+### 与本地缓存有关header字段
 
-##### Cache-Control
+#### Cache-Control
 * Cache-Control: public     可以被所有用户缓存，包括终端用户和CDN等中间代理服务商
 * Cache-Control: private    只能被终端用户缓存，其他用户禁止缓存
 * Cache-Control: no-cache   不使用本地缓存，向服务器发送请求，若存在合适令牌（Etag)则进行协商缓存
 * Cache-Control: no-store   绝对禁止一切形式的缓存，要求每次都从服务器重新下载
 * Cache-Control: max-age    指定缓存失效时间，单位秒，是相对单位时间，意思是缓存将在xxx秒之后失效,这个选项只在HTTP 1.1可用,并且优先级比Expires高
 
-##### Expires
+#### Expires
 Expires是HTTP/1.0出现的头信息，同样是决定本地缓存策略的头，它是一个绝对时间，格式如 __Expires: Sun, 08 Nov 2009 03:37:26 GMT__ ，只要发送请求时间在这个时间之前，则本地缓存始终有效
 
-#### 本地缓存实现原理
+### 本地缓存实现原理
 本地缓存是指浏览器在加载某项资源时，命中了本地缓存，则选择直接从本地缓存中加载，放弃请求，它的执行过程如下：
  * 浏览器初次发送请求给服务器时，将返回的资源和对应的响应头一起缓存下来。
  * 浏览器再次发起该资源请求时，会先检查上一次请求资源时响应头信息中的Cache-Control:max-age和Expires，这两个值指定了资源的过期时间（两者区别参考上文），若资源尚未失效，则命中缓存，不再请求服务器。
  * 若资源已失效，则将请求发送给服务器，进入缓存协商阶段。
 
-### 协商缓存
+## 协商缓存
 
-#### 与协商缓存有关头
+### 与协商缓存有关header字段
 
-##### Last-Modified/If-Modified-Since
+#### Last-Modified/If-Modified-Since
 * 浏览器第一次请求资源时，服务器会把资源的最新修改时间Last-Modified:Expires: Sun, 08 Nov 2009 03:37:26 GMT放在响应头中返回
 * 浏览器第二次请求时，会把上一次服务器返回的修改时间放在请求头If-Modified-Since中发送给服务器，服务器将拿这个值和服务器上资源的最新修改时间对比
 * 若请求头中的时间大于等于资源最新修改时间，则命中缓存，服务器返回新的响应header信息，更新缓存中的header，但并不返回资源内容，而是告知浏览器可以直接从缓存获取，否则返回最新资源。
 这时，利用Etag能够更加准确的控制缓存，因为Etag是服务器自动生成或者由开发者生成的对应资源在服务器端的唯一标识符。
 
+::: tip 说明
 Last-Modified与ETag是可以一起使用的，服务器会优先验证ETag，一致的情况下，才会继续比对Last-Modified，最后才决定是否返回304。
+:::
 
-##### Etag/If-None-Match
+#### Etag/If-None-Match
 这两个值是由服务器生成的每个资源的唯一标识字符串，只要资源有变化就这个值就会改变；其判断过程与Last-Modified/If-Modified-Since类似，与Last-Modified不一样的是，当服务器返回304 Not Modified的响应时，由于ETag重新生成过，response header中还会把这个ETag返回，即使这个ETag跟之前的没有变化。
 
 #### Last-Modified与Etag
