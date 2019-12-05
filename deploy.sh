@@ -23,4 +23,6 @@ git push -u origin master
 # 如果你想要部署到 https://<USERNAME>.github.io/<REPO>
 # git push -f git@github.com:<USERNAME>/<REPO>.git master:gh-pages
 
+# 拉取远程代码，强制合并，忽略历史
+# git pull https://github.com/Cwhilter/whilter.github.io.git  master --allow-unrelated-histories
 cd -

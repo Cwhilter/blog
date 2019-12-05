@@ -83,7 +83,6 @@
 
 <script>
 import { EventUtil, debounce } from "../../assets/util"
-import '../styles/theme.less'
 import '../styles/iconfont.css'
 import articleSummaryChunk from '../components/articleSummaryChunk'
 export default {
@@ -145,4 +144,5 @@ export default {
 }
 </script>
 <style lang="less" scoped>
+@import url('../styles/theme.less');
 </style>
