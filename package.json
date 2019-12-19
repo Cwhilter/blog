@@ -2,8 +2,8 @@
   "name": "blog",
   "version": "",
   "scripts": {
-    "docs:dev": "vuepress dev docs",
-    "docs:build": "vuepress build docs"
+    "dev": "vuepress dev docs",
+    "build": "vuepress build docs && scp -r docs/.vuepress/dist/* root@47.100.115.166:/usr/share/nginx/blog"
   },
   "dependencies": {
     "docsearch.js": "^2.5.2",
@@ -16,6 +16,7 @@
     "json-stringify-safe": "^5.0.1",
     "less": "^3.0.4",
     "less-loader": "^4.1.0",
+    "moment": "^2.24.0",
     "url-loader": "^1.0.1",
     "vuepress-plugin-container": "^2.1.0"
   }

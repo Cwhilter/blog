@@ -3,6 +3,9 @@ title: "前端常见跨域解决方案"
 summary: 
   first: "受限于浏览器的同源策略，在使用XMLHttpRequest访问不同源的资源时便会遇到跨域问题。"
   second: "实现跨域的方式很多，不一而同，实际使用时也会根据不同场景选择不同的跨域方式，因此在此总结一下不同的跨域方式，以及不同的跨域方式应该适用怎样的场景。"
+illustration: 
+  position: "left"
+  link: "core.png"
 tag: 
   - "http"
   - "cors"
@@ -197,3 +200,6 @@ CORS请求默认不发送Cookie和HTTP认证信息。如果要把Cookie发送到
   shr.onreadystatechange = handler
   shr.send()
 ```
+### 服务器代理
+
+### Websocket

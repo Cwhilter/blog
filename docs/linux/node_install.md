@@ -33,7 +33,7 @@ tag:
 ``` sh
  wget https://npm.taobao.org/mirrors/node/v12.13.1/node-v12.13.1-linux-x64.tar.gz      // 下载node包
 
- tar -zxvf node-v12.13.1-linux-x64.tar.gz -C /usr/local/node-v12.13.1-linux-x64      // 解压到指定目录
+ tar -zxvf node-v12.13.1-linux-x64.tar.gz -C /usr/local      // 解压到指定目录
 ```
 
 ::: tip 参考
@@ -67,3 +67,17 @@ node -v
 npm -v
 ```
 ![测试安装成功](/images/WechatIMG92.png)
+
+## 6.安装Nginx
+
+``` sh
+yum install nginx -y
+```
+
+::: tip 安装后的默认路径（阿里云）
+默认网站配置目录  （/etc/nginx/）
+
+默认网站根目录  （/usr/share/nginx）
+:::
+
+Nginx教程参考[Nginx 入门指南](https://www.w3cschool.cn/nginx/)

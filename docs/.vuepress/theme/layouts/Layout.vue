@@ -20,16 +20,16 @@
           <div>talk is cheap</div>
           <div>show me the code</div>
           <div class="contact">
-            <a href="www.baidu.com">
+            <a target="_blank" href="https://www.zhihu.com/people/wang-peng-40-82/activities">
               <i class="iconfont icon-zhihu"></i>
             </a>
-            <a href="https://github.com/Cwhilter" target="_blank">
+            <a target="_blank" href="https://github.com/Cwhilter">
               <i class="iconfont icon-github"></i>
             </a>
-            <a href="www.baidu.com">
+            <a target="_blank" href="https://www.baidu.com">
               <i class="iconfont icon-xinlangweibo"></i>
             </a>
-            <a href="www.baidu.com">
+            <a target="_blank" href="http://www.whilter.info">
               <i class="iconfont icon-my_light"></i>
             </a>
           </div>
@@ -52,6 +52,7 @@
       <div class="container" style="overflow: auto">
         <!-- 首页列表 -->
         <div class="pages-list" v-if="isHomePage">
+          <SearchBox/>
           <div class="lg-screen">
             <div class="col">
               <articleSummaryChunk v-for="(item,index) in filterPages(3, 0)" :key="index" :articleInfo="item"/>
@@ -84,7 +85,10 @@
 <script>
 import { EventUtil, debounce } from "../../assets/util"
 import '../styles/iconfont.css'
+// import '../styles/theme.less'
 import articleSummaryChunk from '../components/articleSummaryChunk'
+import moment from 'moment'
+import SearchBox from '@SearchBox'
 export default {
   data() {
     return {
@@ -104,7 +108,6 @@ export default {
     },
     navLink(link) {
       this.nav = link
-      this.$router.push({ path: "/" })
     },
     filterPages(cols, col_index) {
       return this.pages.filter((item, index) => {
@@ -125,9 +128,9 @@ export default {
         .filter(item => {
           return item.path.indexOf(this.nav) > -1 && !item.frontmatter.home
         })
-        // .sort(function(value1, value2) {
-        //   return value1 - value2
-        // })
+        .sort(function(value1, value2) {
+          return moment(value1.lastUpdated, 'MM-DD-YYYY, hh:mm:ss aA').unix() - moment(value2.lastUpdated, 'MM-DD-YYYY, hh:mm:ss aA').unix()
+        })
     },
     isHomePage() {
       return this.$page.frontmatter.home
@@ -140,9 +143,9 @@ export default {
   },
   components: {
     articleSummaryChunk,
+    SearchBox
   }
 }
 </script>
 <style lang="less" scoped>
-@import url('../styles/theme.less');
 </style>

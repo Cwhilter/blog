@@ -5,7 +5,7 @@ summary:
   second: "前端模块化也经历了很多的变动，衍生出很多相关模块化解决方案，本文试着梳理一下前端模块化的各个解决方案"
 illustration: 
   position: "right"
-  link: "js.png"
+  link: "module.png"
 tag: 
   - "前端"
   - "工程化"
@@ -167,3 +167,5 @@ CMD（Common Module Definition）通用模块定义。这是SeaJS 在推广过�
 ECMAScript 6.0是JavaScript语言的下一代标准，已经在2015年6月正式发布了。它的目标，是使得JavaScript语言可以用来编写复杂的大型应用程序，成为企业级开发语言。ES6提供了一个标准的模块化解决方案。
 
 ES6 模块的设计思想，是尽量的静态化，使得编译时就能确定模块的依赖关系，以及输入和输出的变量。CommonJS 和 AMD 模块，都只能在运行时确定这些东西。
+
+## CSS的模块化

@@ -6,11 +6,10 @@
 
 2、VuePress是以Vue驱动的静态站点生成工具，特点是以markdown为中心，同时可以在markdown中使用vue组件，也可以通过vue开发自定义主题
 
-3、博客目前处于初始化阶段，样式，布局都有待调整
+3、博客目前处于初始化阶段，暂时只有简单的页面展示，未来会渐进式增加一些实用功能
 
-4、本地dev环境： http://localhost:8080
 
 ```
-console.log('Hello World!');
+console.log('Hello World!')
 
 ```

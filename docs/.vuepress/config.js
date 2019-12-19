@@ -19,7 +19,7 @@ module.exports = {
 				link: '/linux/'
 			},
 			{
-				title: '杂记',
+				title: '其他',
 				link: '/diary/'
 			}
 		]

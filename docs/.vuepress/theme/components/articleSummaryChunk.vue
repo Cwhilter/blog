@@ -6,6 +6,7 @@
   background   : #fff;
   background   : rgba(255, 255, 255, 0.5);
   box-shadow   : 0 1px 1px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
 
   .content-summary {
     color   : #666;
@@ -58,7 +59,8 @@
     line-height  : 45px;
     color        : #bbb;
     font-size    : 14px;
-
+    display: flex;
+    justify-content: space-between;
     a {
       float       : right;
     }
@@ -77,7 +79,7 @@
 </style>
 <template>
   <div>
-    <div class="page-chunk">
+    <div class="page-chunk" @click="() => this.$router.push(articleInfo.path)">
       <div class="content-summary">
         <div class="title">{{articleInfo.frontmatter.title}}</div>
         <div class="summary">
@@ -93,18 +95,28 @@
         </div>
       </div>
       <div class="page-chunk-footer">
-        <i class="iconfont icon-news_hot_light tag-icon"></i>
-        <span>{{articleInfo.frontmatter.tag.join('、')}}</span>
-        <router-link :to="articleInfo.path">查看详情 >></router-link>
+        <div>
+          <i class="iconfont icon-news_hot_light tag-icon"></i>
+          <span>{{articleInfo.frontmatter.tag.join('、')}}</span>
+        </div>
+        <div>{{dateFormat(articleInfo.lastUpdated || new Date())}}</div>
+        <a>查看详情 >></a>
       </div>
     </div>
   </div>
 </template>
 <script>
+import moment from 'moment'
 export default {
   data() {
     return {
       
+    }
+  },
+  methods: {
+    dateFormat(date) {
+      return moment(date, 'MM-DD-YYYY, hh:mm:ss aA').format('YYYY-MM-DD HH:mm:ss')
+      // return moment(date.split(',').shift()).format('YYYY-MM-DD') + ' ' + moment(date.split(',').pop().trim()).format('HH:mm:ss')
     }
   },
   props: {
