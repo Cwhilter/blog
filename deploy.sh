@@ -26,5 +26,5 @@ scp -r docs/.vuepress/dist/* root@47.100.115.166:/usr/share/nginx/blog
 
 # 拉取远程代码，强制合并，忽略历史
 # git pull https://github.com/Cwhilter/whilter.github.io.git  master --allow-unrelated-histories
-rm -rf docs/.vuepress/dist/*
+rm -rf docs/.vuepress/dist
 cd -

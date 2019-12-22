@@ -51,8 +51,10 @@
       </div>
       <div class="container" style="overflow: auto">
         <!-- 首页列表 -->
-        <div class="pages-list" v-if="isHomePage">
-          <SearchBox/>
+        <div class="pages-list" v-show="isHomePage">
+          <div class="search-container">
+            <SearchBox/>
+          </div>
           <div class="lg-screen">
             <div class="col">
               <articleSummaryChunk v-for="(item,index) in filterPages(3, 0)" :key="index" :articleInfo="item"/>
@@ -74,7 +76,7 @@
           </div>
         </div>
         <!-- 文章内容 -->
-        <div class="page-content" v-else>
+        <div id="page-content" class="page-content" v-show="!isHomePage">
           <Content />
         </div>
       </div>
@@ -97,8 +99,9 @@ export default {
     }
   },
   watch: {
-    
+   
   },
+
   methods: {
     onScroll: debounce(function() {
       this.activeSidebar()
@@ -140,6 +143,8 @@ export default {
     }
   },
   updated() {
+    const hash = this.$route.hash
+    window.document.getElementById(hash.slice(1) || 'page-content').scrollIntoView()
   },
   components: {
     articleSummaryChunk,

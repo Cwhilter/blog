@@ -217,11 +217,21 @@ ol, p, ul {
   }
   .page-content,
   .pages-list {
-    margin: 2rem 3rem 0.5rem 3rem;
+    margin: 3rem 3rem 0.5rem 3rem;
   }
 
   .pages-list {
-
+    .search-container {
+      position: fixed;
+      right: 0;
+      top: 200px;
+      width: 50px;
+      height 100px;
+      transition: width .5s;
+      &:hover {
+        width: 200px;
+      }
+    }
     .lg-screen,
     .sm-screen {
       display        : flex;
