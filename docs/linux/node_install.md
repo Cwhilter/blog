@@ -18,7 +18,7 @@ tag:
 
 我选择从Mac远程ssh连接，使用命令ssh root@[IP], 输入密码后即可远程登陆阿里云
 
-![登陆成功界面](/images/WechatIMG91.png)
+![登陆成功界面](/images/WechatIMG91.png)s
 
 ## 2. 安装[wget](https://www.linuxcool.com/wget)
 

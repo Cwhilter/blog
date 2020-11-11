@@ -36,7 +36,8 @@
         </div>
       </div>
       <div v-else class="sidebar content-side">
-        <div class="return-home" @click="() => this.$router.push('/')"><span class="blog-img"></span>whilter的个人博客</div>
+        <router-link class="blog-img-container" to="/"><span class="blog-img"></span></router-link>
+        <!-- <div class="return-home" @click="() => this.$router.push('/')"></div> -->
         <ul class="headers-list">
           <h3>{{$page.title}}</h3>
           <li
@@ -103,9 +104,6 @@ export default {
   },
 
   methods: {
-    onScroll: debounce(function() {
-      this.activeSidebar()
-    }, 500),
     activeSidebar() {
       const sidebarLinks = [].slice.call(document.querySelectorAll('.headers-list li'))
     },
@@ -123,7 +121,6 @@ export default {
     }
   },
   mounted() {
-    window.addEventListener('scroll', this.onScroll)
   },
   computed: {
     pages() {
